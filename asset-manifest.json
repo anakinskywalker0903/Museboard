@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/museboard/static/css/main.eb8754d8.css",
+    "main.js": "/museboard/static/js/main.a7670e48.js",
+    "index.html": "/museboard/index.html",
+    "main.eb8754d8.css.map": "/museboard/static/css/main.eb8754d8.css.map",
+    "main.a7670e48.js.map": "/museboard/static/js/main.a7670e48.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.eb8754d8.css",
+    "static/js/main.a7670e48.js"
+  ]
+}
