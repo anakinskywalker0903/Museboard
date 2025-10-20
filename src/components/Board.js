@@ -34,7 +34,7 @@ const Board = ({ ideas, selectedIdeas, onIdeasChange, onSelectedIdeasChange }) =
     ctx.beginPath();
     ctx.moveTo(idea1.x + 50, idea1.y + 25); // Center of first node
     ctx.lineTo(idea2.x + 50, idea2.y + 25); // Center of second node
-    ctx.strokeStyle = '#e5e7eb';
+    ctx.strokeStyle = '#4b5563'; // Dark gray for lines
     ctx.lineWidth = 2;
     ctx.stroke();
   };
@@ -78,19 +78,19 @@ const Board = ({ ideas, selectedIdeas, onIdeasChange, onSelectedIdeasChange }) =
         style={{ zIndex: 1 }}
       />
       
-      {/* Ideas container */}
+      {/* Ideas container with dark theme */}
       <div 
-        className="relative bg-white rounded-lg shadow-sm border min-h-96"
+        className="relative bg-gray-900 rounded-lg shadow-xl border border-gray-700 min-h-96 text-gray-200"
         style={{ height: '500px' }}
         onClick={handleCanvasClick}
       >
-        {/* Grid background */}
+        {/* Grid background - subtle dark grey */}
         <div 
-          className="absolute inset-0 opacity-5"
+          className="absolute inset-0 opacity-10"
           style={{
             backgroundImage: `
-              linear-gradient(to right, #000 1px, transparent 1px),
-              linear-gradient(to bottom, #000 1px, transparent 1px)
+              linear-gradient(to right, #6b7280 1px, transparent 1px),
+              linear-gradient(to bottom, #6b7280 1px, transparent 1px)
             `,
             backgroundSize: '20px 20px'
           }}
@@ -114,7 +114,7 @@ const Board = ({ ideas, selectedIdeas, onIdeasChange, onSelectedIdeasChange }) =
           />
         ))}
 
-        {/* Empty state */}
+        {/* Empty state with dark mode styling */}
         {ideas.length === 0 && (
           <div className="absolute inset-0 flex items-center justify-center text-gray-400">
             <div className="text-center">
@@ -129,5 +129,7 @@ const Board = ({ ideas, selectedIdeas, onIdeasChange, onSelectedIdeasChange }) =
     </div>
   );
 };
+
+export default Board;
 
 export default Board;
