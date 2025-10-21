@@ -1,0 +1,14 @@
+/* Import the CSS code I provided earlier in the artifact */
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+body {
+  background-color: #000000;
+  background-image: radial-gradient(circle at 50% 50%, #0b0d17 0%, #000000 70%);
+  background-attachment: fixed;
+  color: #ffe81f;
+  font-family: 'Rajdhani', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Add all the CSS from the artifact here */

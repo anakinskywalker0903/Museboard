@@ -34,8 +34,10 @@ const Board = ({ ideas, selectedIdeas, onIdeasChange, onSelectedIdeasChange }) =
     ctx.beginPath();
     ctx.moveTo(idea1.x + 50, idea1.y + 25); // Center of first node
     ctx.lineTo(idea2.x + 50, idea2.y + 25); // Center of second node
-    ctx.strokeStyle = '#4b5563'; // Dark gray for lines
+    ctx.strokeStyle = '#ffe81f'; // Star Wars gold for lines
     ctx.lineWidth = 2;
+    ctx.shadowBlur = 10;
+    ctx.shadowColor = 'rgba(255, 232, 31, 0.5)';
     ctx.stroke();
   };
 
@@ -78,19 +80,25 @@ const Board = ({ ideas, selectedIdeas, onIdeasChange, onSelectedIdeasChange }) =
         style={{ zIndex: 1 }}
       />
       
-      {/* Ideas container with dark theme */}
+      {/* Ideas container with Star Wars black theme */}
       <div 
-        className="relative bg-gray-900 rounded-lg shadow-xl border border-gray-700 min-h-96 text-gray-200"
-        style={{ height: '500px' }}
+        className="relative rounded-lg shadow-xl min-h-96"
+        style={{ 
+          height: '500px',
+          background: 'linear-gradient(180deg, #000000 0%, #0b0d17 100%)',
+          border: '2px solid rgba(255, 232, 31, 0.3)',
+          boxShadow: '0 0 20px rgba(255, 232, 31, 0.2)',
+          color: '#ffe81f'
+        }}
         onClick={handleCanvasClick}
       >
-        {/* Grid background - subtle dark grey */}
+        {/* Grid background - Star Wars gold tint */}
         <div 
           className="absolute inset-0 opacity-10"
           style={{
             backgroundImage: `
-              linear-gradient(to right, #6b7280 1px, transparent 1px),
-              linear-gradient(to bottom, #6b7280 1px, transparent 1px)
+              linear-gradient(to right, #ffe81f 1px, transparent 1px),
+              linear-gradient(to bottom, #ffe81f 1px, transparent 1px)
             `,
             backgroundSize: '20px 20px'
           }}
@@ -114,14 +122,27 @@ const Board = ({ ideas, selectedIdeas, onIdeasChange, onSelectedIdeasChange }) =
           />
         ))}
 
-        {/* Empty state with dark mode styling */}
+        {/* Empty state with Star Wars styling */}
         {ideas.length === 0 && (
-          <div className="absolute inset-0 flex items-center justify-center text-gray-400">
-            <div className="text-center">
+          <div className="absolute inset-0 flex items-center justify-center" style={{ color: '#ffe81f' }}>
+            <div className="text-center" style={{ 
+              fontFamily: 'Rajdhani, sans-serif',
+              textShadow: '0 0 15px rgba(255, 232, 31, 0.6)'
+            }}>
               <div className="text-4xl mb-2">💡</div>
-              <p className="text-lg font-medium mb-2">Welcome to MuseBoard!</p>
-              <p className="text-sm">Enter a topic above and click "Expand Ideas" to get started</p>
-              <p className="text-xs mt-2">Or click anywhere to add individual ideas</p>
+              <p className="text-lg font-medium mb-2" style={{ 
+                color: '#ffe81f',
+                fontWeight: '700',
+                fontSize: '1.25rem'
+              }}>Welcome to Brainstormzz!</p>
+              <p className="text-sm" style={{ 
+                color: '#ffe81f',
+                fontSize: '0.95rem'
+              }}>Enter a topic above and click "Expand Ideas" to get started</p>
+              <p className="text-xs mt-2" style={{ 
+                color: 'rgba(255, 232, 31, 0.8)',
+                fontSize: '0.85rem'
+              }}>Or click anywhere to add individual ideas</p>
             </div>
           </div>
         )}
@@ -129,7 +150,5 @@ const Board = ({ ideas, selectedIdeas, onIdeasChange, onSelectedIdeasChange }) =
     </div>
   );
 };
-
-export default Board;
 
 export default Board;

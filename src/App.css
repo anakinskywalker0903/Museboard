@@ -1,26 +1,246 @@
-.App {
-  text-align: center;
+/* ====== Star Wars Black Theme for Brainstormzz - Complete Fix ====== */
+
+/* Import a more Star Wars-appropriate font */
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+/* Base body styling */
+body {
+  background-color: #000000;
+  background-image: radial-gradient(circle at 50% 50%, #0b0d17 0%, #000000 70%);
+  background-attachment: fixed;
+  color: #ffe81f;
+  font-family: 'Rajdhani', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
+/* Global text glow effect */
+body, h1, h2, h3, h4, h5, h6, p, span, div, label {
+  text-shadow: 0 0 8px rgba(255, 232, 31, 0.3);
+  color: #ffe81f;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+/* App container - fully transparent */
+.App, #root, main {
+  text-align: center;
+  background-color: transparent !important;
+  min-height: 100vh;
+}
+
+/* All possible white/light backgrounds - force black */
+*:not(button):not(input):not(textarea) {
+  background-color: transparent;
+}
+
+div, section, article, aside, nav {
+  background-color: transparent !important;
+}
+
+/* Header styling */
+.App-header, header, .top-bar, .navbar {
+  background: linear-gradient(180deg, #000000 0%, #0b0d17 100%) !important;
+  border-bottom: 2px solid #ffe81f;
+  box-shadow: 0 0 20px rgba(255, 232, 31, 0.3);
+  color: #ffe81f;
+  text-shadow: 0 0 8px rgba(255, 232, 31, 0.4);
+  padding: 20px;
+}
+
+/* Make Brainstormzz logo text brighter */
+header h1,
+header .logo,
+header .brand,
+.App-header h1,
+.App-header .logo,
+.App-header .brand {
+  color: #ffe81f !important;
+  text-shadow: 0 0 20px rgba(255, 232, 31, 0.8) !important;
+  font-weight: 700 !important;
+  opacity: 1 !important;
+}
+
+/* Toolbar and control areas */
+.toolbar, 
+.controls, 
+.idea-input-bar, 
+.input-section, 
+.header-toolbar,
+.prompt-bar,
+.input-wrapper,
+.white-container,
+.content-wrapper {
+  background: linear-gradient(180deg, #000000 0%, #0b0d17 100%) !important;
+  border: 1px solid rgba(255, 232, 31, 0.3) !important;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(255, 232, 31, 0.2) !important;
+  color: #ffe81f !important;
+}
+
+/* Force all text and icons to Star Wars gold */
+.toolbar *, 
+.controls *, 
+.idea-input-bar *, 
+.input-section *, 
+.header-toolbar *,
+.prompt-bar *,
+.input-wrapper *,
+.white-container * {
+  color: #ffe81f !important;
+  font-family: 'Rajdhani', sans-serif !important;
+}
+
+/* Input fields styling */
+input,
+textarea,
+select {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%) !important;
+  color: #ffe81f !important;
+  border: 1px solid rgba(255, 232, 31, 0.4) !important;
+  border-radius: 8px;
+  box-shadow: 
+    inset 0 2px 8px rgba(0, 0, 0, 0.6),
+    0 0 10px rgba(255, 232, 31, 0.2);
+  padding: 12px;
+  font-family: 'Rajdhani', sans-serif !important;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #ffe81f !important;
+  box-shadow: 
+    inset 0 2px 8px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(255, 232, 31, 0.5);
+}
+
+/* Placeholder text */
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255, 232, 31, 0.6) !important;
+  font-family: 'Rajdhani', sans-serif !important;
+}
+
+/* Button styling */
+button {
+  color: #ffe81f !important;
+  background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%) !important;
+  border: 1px solid rgba(255, 232, 31, 0.4) !important;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(255, 232, 31, 0.3);
+  padding: 10px 20px;
+  font-family: 'Rajdhani', sans-serif !important;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #222 0%, #111 100%) !important;
+  box-shadow: 0 0 20px rgba(255, 232, 31, 0.6);
+  transform: scale(1.05);
+  border-color: #ffe81f !important;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* Links styling */
+a, .App-link {
+  color: #00bfff;
+  text-shadow: 0 0 5px #00bfff;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+a:hover {
+  color: #ffe81f;
+  text-shadow: 0 0 10px #ffe81f;
+}
+
+/* Card/panel styling */
+.card,
+.panel,
+.idea-card,
+.content-box {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%) !important;
+  border: 1px solid rgba(255, 232, 31, 0.3) !important;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 232, 31, 0.1);
+  padding: 20px;
+  color: #ffe81f !important;
+}
+
+/* Welcome message styling */
+.welcome-message,
+.empty-state,
+.placeholder {
+  color: #ffe81f !important;
+  font-family: 'Rajdhani', sans-serif !important;
+  text-shadow: 0 0 15px rgba(255, 232, 31, 0.4);
+}
+
+/* Icon styling */
+svg, .icon {
+  color: #ffe81f !important;
+  fill: #ffe81f !important;
+  filter: drop-shadow(0 0 5px rgba(255, 232, 31, 0.4));
+}
+
+/* Status indicators */
+.status,
+.badge,
+.indicator {
+  background: rgba(255, 232, 31, 0.2) !important;
+  color: #ffe81f !important;
+  border: 1px solid rgba(255, 232, 31, 0.4);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-family: 'Rajdhani', sans-serif !important;
+  font-weight: 600;
+  text-shadow: 0 0 8px rgba(255, 232, 31, 0.5);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ffe81f 0%, #ccb917 100%);
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(255, 232, 31, 0.5);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ffe81f;
+  box-shadow: 0 0 15px rgba(255, 232, 31, 0.8);
+}
+
+/* Logo animation */
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+  filter: drop-shadow(0 0 20px rgba(255, 232, 31, 0.6));
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  padding: 20px;
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
 }
 
 @keyframes App-logo-spin {
@@ -30,4 +250,64 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Ensure all white backgrounds are eliminated */
+[style*="background: white"],
+[style*="background: #fff"],
+[style*="background: #ffffff"],
+[style*="background-color: white"],
+[style*="background-color: #fff"],
+[style*="background-color: #ffffff"] {
+  background: linear-gradient(180deg, #000000 0%, #0b0d17 100%) !important;
+}
+
+/* Force black on any remaining light elements */
+.bg-white,
+.bg-light,
+.bg-gray-100 {
+  background: linear-gradient(180deg, #000000 0%, #0b0d17 100%) !important;
+  color: #ffe81f !important;
+}
+
+/* Modal/overlay styling */
+.modal,
+.overlay,
+.popup,
+.dialog {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%) !important;
+  border: 2px solid #ffe81f !important;
+  box-shadow: 0 0 40px rgba(255, 232, 31, 0.4);
+  color: #ffe81f !important;
+}
+
+/* Grid/list items */
+.grid-item,
+.list-item {
+  background: rgba(10, 10, 10, 0.8) !important;
+  border: 1px solid rgba(255, 232, 31, 0.2);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.grid-item:hover,
+.list-item:hover {
+  border-color: #ffe81f;
+  box-shadow: 0 0 20px rgba(255, 232, 31, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Make generated idea cards text brighter */
+.grid-item *,
+.list-item *,
+.idea-item *,
+.card-title,
+.card-content,
+.idea-title,
+.idea-content,
+.idea-text {
+  color: #ffe81f !important;
+  text-shadow: 0 0 10px rgba(255, 232, 31, 0.5) !important;
+  font-weight: 500 !important;
+  opacity: 1 !important;
 }

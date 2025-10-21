@@ -15,7 +15,7 @@ function App() {
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
               <h1 className="text-2xl font-bold text-gray-900">
-                🎯 MuseBoard
+                🎯 Brainstormzz
               </h1>
               <span className="ml-3 px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">
                 AI-Powered

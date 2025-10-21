@@ -1,12 +1,12 @@
-# 🚀 MuseBoard Deployment Guide
+# 🚀 Brainstormzz Deployment Guide
 
-## 📋 **Steps to Deploy MuseBoard for AI 2025 Hackathon**
+## 📋 **Steps to Deploy Brainstormzz for AI 2025 Hackathon**
 
 ### **Step 1: Create GitHub Repository**
 
 1. **Go to GitHub.com** and sign in
 2. **Click "New Repository"** (green button)
-3. **Repository name:** `museboard`
+3. **Repository name:** `Brainstormzz`
 4. **Description:** `AI-powered brainstorming whiteboard for AI 2025 hackathon`
 5. **Make it Public** (so it's free to deploy)
 6. **Don't initialize** with README (we already have one)
@@ -24,10 +24,10 @@ git init
 git add .
 
 # Commit the files
-git commit -m "Initial commit: MuseBoard AI brainstorming tool"
+git commit -m "Initial commit: Brainstormzz AI brainstorming tool"
 
 # Add your GitHub repository (replace YOUR_USERNAME)
-git remote add origin https://github.com/YOUR_USERNAME/museboard.git
+git remote add origin https://github.com/YOUR_USERNAME/Brainstormzz.git
 
 # Push to GitHub
 git branch -M main
@@ -38,7 +38,7 @@ git push -u origin main
 
 **In package.json, change line 5:**
 ```json
-"homepage": "https://YOUR_USERNAME.github.io/museboard"
+"homepage": "https://YOUR_USERNAME.github.io/Brainstormzz"
 ```
 
 ### **Step 4: Deploy to GitHub Pages**
@@ -59,9 +59,9 @@ npm run deploy
 
 ### **Step 6: Share with Your Friend**
 
-**Your MuseBoard will be live at:**
+**Your Brainstormzz will be live at:**
 ```
-https://YOUR_USERNAME.github.io/museboard
+https://YOUR_USERNAME.github.io/Brainstormzz
 ```
 
 **Share this URL with your friend in Toronto!**
@@ -74,8 +74,8 @@ https://YOUR_USERNAME.github.io/museboard
 # 1. Initialize and push to GitHub
 git init
 git add .
-git commit -m "Initial commit: MuseBoard AI brainstorming tool"
-git remote add origin https://github.com/YOUR_USERNAME/museboard.git
+git commit -m "Initial commit: Brainstormzz AI brainstorming tool"
+git remote add origin https://github.com/YOUR_USERNAME/Brainstormzz.git
 git branch -M main
 git push -u origin main
 
@@ -102,8 +102,8 @@ npm run deploy
 ## 🏆 **For AI 2025 Hackathon Submission**
 
 **Your submission will include:**
-- ✅ Live demo URL: `https://YOUR_USERNAME.github.io/museboard`
-- ✅ GitHub repository: `https://github.com/YOUR_USERNAME/museboard`
+- ✅ Live demo URL: `https://YOUR_USERNAME.github.io/Brainstormzz`
+- ✅ GitHub repository: `https://github.com/YOUR_USERNAME/Brainstormzz`
 - ✅ Complete README with features and demo script
 - ✅ AI-powered brainstorming functionality
 - ✅ Chrome AI API integration (mock system ready for real APIs)
