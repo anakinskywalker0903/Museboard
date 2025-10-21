@@ -1,14 +1,20 @@
-// tailwind.config.js
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: 'class', // <-- important: use 'class' so toggle works
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
-    "./public/index.html"
   ],
+  // IMPORTANT: Use 'class' strategy for manual theme switching
+  darkMode: 'class', // This allows [data-theme="dark"] to work
   theme: {
     extend: {
-      // add custom colors or spacing here if you want later
+      colors: {
+        // Light mode colors
+        'light-bg': '#ffffff',
+        'light-text': '#1e3a8a',
+        // Dark mode colors (keep as is)
+        'dark-bg': '#0f172a',
+        'dark-text': '#f1f5f9',
+      },
     },
   },
   plugins: [],

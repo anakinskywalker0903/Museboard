@@ -6,7 +6,7 @@ export const ThemeProvider = ({ children }) => {
   const [isDark, setIsDark] = useState(true); // Dark is default
 
   useEffect(() => {
-    // Check localStorage for saved preference (optional)
+    // Check localStorage for saved preference
     const saved = localStorage.getItem('theme-mode');
     if (saved) {
       setIsDark(saved === 'dark');
@@ -15,6 +15,19 @@ export const ThemeProvider = ({ children }) => {
       setIsDark(true);
     }
   }, []);
+
+  // THIS IS THE FIX! Apply theme to document whenever isDark changes
+  useEffect(() => {
+    const theme = isDark ? 'dark' : 'light';
+    // Set data-theme attribute on document root
+    document.documentElement.setAttribute('data-theme', theme);
+    // Also add class for Tailwind dark mode (if needed)
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDark]);
 
   const toggleTheme = () => {
     setIsDark(prev => {
