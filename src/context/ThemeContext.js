@@ -3,20 +3,20 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  const [isDark, setIsDark] = useState(true); // Dark is default
+  const [isDark, setIsDark] = useState(true); // Sith (dark) is default
 
   useEffect(() => {
     // Check localStorage for saved preference
     const saved = localStorage.getItem('theme-mode');
     if (saved) {
-      setIsDark(saved === 'dark');
+      setIsDark(saved === 'sith');
     } else {
-      // Default to dark
+      // Default to Sith (dark)
       setIsDark(true);
     }
   }, []);
 
-  // THIS IS THE FIX! Apply theme to document whenever isDark changes
+  // Apply theme to document whenever isDark changes
   useEffect(() => {
     const theme = isDark ? 'dark' : 'light';
     // Set data-theme attribute on document root
@@ -32,7 +32,7 @@ export const ThemeProvider = ({ children }) => {
   const toggleTheme = () => {
     setIsDark(prev => {
       const newValue = !prev;
-      localStorage.setItem('theme-mode', newValue ? 'dark' : 'light');
+      localStorage.setItem('theme-mode', newValue ? 'sith' : 'jedi');
       return newValue;
     });
   };

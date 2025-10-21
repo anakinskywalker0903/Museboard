@@ -21,6 +21,29 @@ const Board = ({ ideas, selectedIdeas, onIdeasChange, onSelectedIdeasChange }) =
     // Clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+    // Validate and fix any ideas that are outside boundaries with ZERO tolerance
+    const boardWidth = 500;
+    const boardHeight = 500;
+    const ideaWidth = 180;
+    const ideaHeight = 50;
+    const margin = 0; // ZERO tolerance
+    
+    let needsUpdate = false;
+    const fixedIdeas = ideas.map(idea => {
+      const constrainedX = Math.max(0, Math.min(idea.x, boardWidth - ideaWidth));
+      const constrainedY = Math.max(0, Math.min(idea.y, boardHeight - ideaHeight));
+      
+      if (idea.x !== constrainedX || idea.y !== constrainedY) {
+        needsUpdate = true;
+        return { ...idea, x: constrainedX, y: constrainedY };
+      }
+      return idea;
+    });
+    
+    if (needsUpdate) {
+      onIdeasChange(fixedIdeas);
+    }
+
     // Draw connections
     ideas.forEach(idea => {
       idea.connections.forEach(connectedId => {
@@ -30,7 +53,7 @@ const Board = ({ ideas, selectedIdeas, onIdeasChange, onSelectedIdeasChange }) =
         }
       });
     });
-  }, [ideas, isDark]);
+  }, [ideas, isDark, onIdeasChange]);
 
   const drawConnection = (ctx, idea1, idea2, isDark) => {
     ctx.beginPath();
@@ -54,7 +77,7 @@ const Board = ({ ideas, selectedIdeas, onIdeasChange, onSelectedIdeasChange }) =
 
     // Check if click is on an existing idea
     const clickedIdea = ideas.find(idea => 
-      x >= idea.x && x <= idea.x + 100 && 
+      x >= idea.x && x <= idea.x + 180 && 
       y >= idea.y && y <= idea.y + 50
     );
 
@@ -65,12 +88,22 @@ const Board = ({ ideas, selectedIdeas, onIdeasChange, onSelectedIdeasChange }) =
         : [...selectedIdeas, clickedIdea.id];
       onSelectedIdeasChange(newSelected);
     } else {
-      // Add new idea
+      // Add new idea with ZERO tolerance boundary constraints
+      const boardWidth = 500; // Board width
+      const boardHeight = 500; // Board height
+      const ideaWidth = 180; // Idea node width
+      const ideaHeight = 50; // Idea node height
+      const margin = 0; // ZERO margin - ideas must be completely inside
+      
+      // Constrain position within board boundaries with ZERO tolerance
+      const constrainedX = Math.max(0, Math.min(x - ideaWidth/2, boardWidth - ideaWidth));
+      const constrainedY = Math.max(0, Math.min(y - ideaHeight/2, boardHeight - ideaHeight));
+      
       const newIdea = {
         id: Date.now(),
         text: 'New idea',
-        x: x - 50,
-        y: y - 25,
+        x: constrainedX,
+        y: constrainedY,
         connections: []
       };
       onIdeasChange([...ideas, newIdea]);
@@ -79,14 +112,7 @@ const Board = ({ ideas, selectedIdeas, onIdeasChange, onSelectedIdeasChange }) =
 
   return (
     <div className="relative">
-      {/* Canvas for connections */}
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 w-full h-full pointer-events-none"
-        style={{ zIndex: 1 }}
-      />
-      
-      {/* Ideas container - Theme aware */}
+      {/* Ideas container - Original design with boundary fixes */}
       <div 
         className="relative rounded-lg shadow-xl min-h-96 transition-all duration-300"
         style={{ 
@@ -97,10 +123,17 @@ const Board = ({ ideas, selectedIdeas, onIdeasChange, onSelectedIdeasChange }) =
           border: `2px solid ${isDark ? 'rgba(255, 0, 0, 0.25)' : 'rgba(30, 58, 138, 0.3)'}`,
           boxShadow: 'none',
           color: isDark ? '#ff0000' : '#1e3a8a',
-          fontSize: isDark ? '16px' : '14px'
+          fontSize: isDark ? '16px' : '14px',
+          overflow: 'hidden'
         }}
         onClick={handleCanvasClick}
       >
+        {/* Canvas for connections */}
+        <canvas
+          ref={canvasRef}
+          className="absolute inset-0 w-full h-full pointer-events-none"
+          style={{ zIndex: 1 }}
+        />
         {/* Grid background - Theme aware */}
         <div 
           className="absolute inset-0 opacity-5"
@@ -137,20 +170,20 @@ const Board = ({ ideas, selectedIdeas, onIdeasChange, onSelectedIdeasChange }) =
             <div className="text-center" style={{ 
               fontFamily: 'Rajdhani, sans-serif',
               textShadow: 'none',
-              color: isDark ? '#ff0000' : '#1e3a8a'
+              color: isDark ? '#cc0000' : '#1e3a8a'
             }}>
               <div className="text-4xl mb-2">💡</div>
               <p className="text-lg font-medium mb-2" style={{ 
-                color: isDark ? '#ff0000' : '#1e3a8a',
+                color: isDark ? '#cc0000' : '#1e3a8a',
                 fontWeight: '700',
                 fontSize: '1.25rem'
               }}>Welcome to Brainstormzz!</p>
               <p className="text-sm" style={{ 
-                color: isDark ? '#ff0000' : '#1e3a8a',
+                color: isDark ? '#cc0000' : '#1e3a8a',
                 fontSize: '0.95rem'
               }}>Enter a topic above and click "Expand Ideas" to get started</p>
               <p className="text-xs mt-2" style={{ 
-                color: isDark ? 'rgba(255, 0, 0, 0.7)' : 'rgba(30, 58, 138, 0.7)',
+                color: isDark ? 'rgba(204, 0, 0, 0.8)' : 'rgba(30, 58, 138, 0.8)',
                 fontSize: '0.85rem'
               }}>Or click anywhere to add individual ideas</p>
             </div>

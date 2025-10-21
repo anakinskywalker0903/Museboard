@@ -5,6 +5,8 @@ const IdeaNode = ({ idea, isSelected, onUpdate, onDelete }) => {
   const { isDark } = useTheme();
   const [isEditing, setIsEditing] = useState(false);
   const [text, setText] = useState(idea?.text || '');
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
 
   if (!idea) return null;
 
@@ -17,15 +19,47 @@ const IdeaNode = ({ idea, isSelected, onUpdate, onDelete }) => {
     onUpdate({ ...idea, text });
   };
 
-  // Theme-aware colors
-  const accentColor = isDark ? '#ff0000' : '#d97706';
-  const textColor = isDark ? '#ff0000' : '#d97706';
+  const handleMouseDown = (e) => {
+    if (isEditing) return;
+    setIsDragging(true);
+    setDragStart({
+      x: e.clientX - idea.x,
+      y: e.clientY - idea.y
+    });
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+    
+    const boardWidth = 500;
+    const boardHeight = 500;
+    const ideaWidth = 180;
+    const ideaHeight = 50;
+    const margin = 0; // ZERO tolerance - ideas must be completely inside
+    
+    const newX = e.clientX - dragStart.x;
+    const newY = e.clientY - dragStart.y;
+    
+    // ZERO tolerance constraint within board boundaries
+    const constrainedX = Math.max(0, Math.min(newX, boardWidth - ideaWidth));
+    const constrainedY = Math.max(0, Math.min(newY, boardHeight - ideaHeight));
+    
+    onUpdate({ ...idea, x: constrainedX, y: constrainedY });
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  // Theme-aware colors with darker text
+  const accentColor = isDark ? '#ff0000' : '#1e3a8a';
+  const textColor = isDark ? '#cc0000' : '#1e3a8a'; // Darker red for Sith, dark blue for Jedi
   const bgGradient = isDark
     ? 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)'
-    : 'linear-gradient(135deg, #3a3f47 0%, #2d3139 100%)';
-  const shadowColor = isDark ? 'rgba(255, 0, 0, 0.6)' : 'none';
-  const inputTextColor = isDark ? '#ff0000' : '#d97706';
-  const textShadow = `0 0 10px ${isDark ? 'rgba(255, 0, 0, 0.6)' : 'transparent'}`;
+    : 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)'; // Lighter background for Jedi
+  const shadowColor = isDark ? 'rgba(255, 0, 0, 0.3)' : 'rgba(30, 58, 138, 0.2)';
+  const inputTextColor = isDark ? '#cc0000' : '#1e3a8a'; // Darker text colors
+  const textShadow = 'none'; // Remove text shadow for better readability
 
   return (
     <div
@@ -35,6 +69,10 @@ const IdeaNode = ({ idea, isSelected, onUpdate, onDelete }) => {
         top: idea.y,
         zIndex: 10,
       }}
+      onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseUp}
     >
       <div
         className="rounded-lg shadow-lg transition-all duration-300"

@@ -42,7 +42,7 @@ function AppContent() {
         <h1 style={{ 
           fontSize: '28px', 
           fontWeight: 'bold',
-          color: isDark ? '#ffff00' : '#1e3a8a',
+          color: isDark ? '#ff0000' : '#1e3a8a',
           margin: 0,
           transition: 'color 0.3s ease'
         }}>
