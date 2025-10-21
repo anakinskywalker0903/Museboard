@@ -1,10 +1,10 @@
-# 🎯 MuseBoard - AI-Powered Brainstorming Whiteboard
+# 🎯 Brainstormzz - AI-Powered Brainstorming Whiteboard
 
 > Turn vague thoughts into structured, actionable ideas with Chrome's built-in AI
 
-## 🚀 What is MuseBoard?
+## 🚀 What is Brainstormzz?
 
-MuseBoard is an AI-powered brainstorming whiteboard that helps creators organize their thoughts quickly and efficiently. All AI processing happens locally using Chrome's built-in Gemini Nano model - no cloud required, 100% private.
+Brainstormzz is an AI-powered brainstorming whiteboard that helps creators organize their thoughts quickly and efficiently. All AI processing happens locally using Chrome's built-in Gemini Nano model - no cloud required, 100% private.
 
 ## ✨ Features
 
@@ -34,7 +34,7 @@ MuseBoard is an AI-powered brainstorming whiteboard that helps creators organize
 1. **Clone the repository**
    ```bash
    git clone <your-repo-url>
-   cd museboard
+   cd Brainstormzz
    ```
 
 2. **Install dependencies**
@@ -83,7 +83,7 @@ src/
 
 ## 🌟 Demo Script (3 minutes)
 
-1. **Intro**: "MuseBoard — your AI brainstorming whiteboard"
+1. **Intro**: "Brainstormzz — your AI brainstorming whiteboard"
 2. **Core Demo**: 
    - Enter "Launch an eco-friendly shoe brand"
    - Show AI expansion into categories
