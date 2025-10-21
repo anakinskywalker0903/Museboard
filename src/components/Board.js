@@ -1,10 +1,12 @@
 import React, { useRef, useEffect, useState } from 'react';
+import { useTheme } from '../context/ThemeContext';
 import IdeaNode from './IdeaNode';
 
 const Board = ({ ideas, selectedIdeas, onIdeasChange, onSelectedIdeasChange }) => {
   const canvasRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [dragStart, setDragStart] = useState(null);
+  const { isDark } = useTheme();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -24,20 +26,24 @@ const Board = ({ ideas, selectedIdeas, onIdeasChange, onSelectedIdeasChange }) =
       idea.connections.forEach(connectedId => {
         const connectedIdea = ideas.find(i => i.id === connectedId);
         if (connectedIdea) {
-          drawConnection(ctx, idea, connectedIdea);
+          drawConnection(ctx, idea, connectedIdea, isDark);
         }
       });
     });
-  }, [ideas]);
+  }, [ideas, isDark]);
 
-  const drawConnection = (ctx, idea1, idea2) => {
+  const drawConnection = (ctx, idea1, idea2, isDark) => {
     ctx.beginPath();
     ctx.moveTo(idea1.x + 50, idea1.y + 25); // Center of first node
     ctx.lineTo(idea2.x + 50, idea2.y + 25); // Center of second node
-    ctx.strokeStyle = '#ffe81f'; // Star Wars gold for lines
+    
+    // Red lines for dark mode, gold for light mode
+    ctx.strokeStyle = isDark ? '#ff0000' : '#ffcc00';
     ctx.lineWidth = 2;
     ctx.shadowBlur = 10;
-    ctx.shadowColor = 'rgba(255, 232, 31, 0.5)';
+    ctx.shadowColor = isDark 
+      ? 'rgba(255, 0, 0, 0.5)' 
+      : 'rgba(255, 200, 0, 0.5)';
     ctx.stroke();
   };
 
@@ -80,25 +86,28 @@ const Board = ({ ideas, selectedIdeas, onIdeasChange, onSelectedIdeasChange }) =
         style={{ zIndex: 1 }}
       />
       
-      {/* Ideas container with Star Wars black theme */}
+      {/* Ideas container - Theme aware */}
       <div 
-        className="relative rounded-lg shadow-xl min-h-96"
+        className="relative rounded-lg shadow-xl min-h-96 transition-all duration-300"
         style={{ 
           height: '500px',
-          background: 'linear-gradient(180deg, #000000 0%, #0b0d17 100%)',
-          border: '2px solid rgba(255, 232, 31, 0.3)',
-          boxShadow: '0 0 20px rgba(255, 232, 31, 0.2)',
-          color: '#ffe81f'
+          background: isDark
+            ? '#000000'
+            : '#ffffff',
+          border: `2px solid ${isDark ? 'rgba(255, 0, 0, 0.25)' : 'rgba(30, 58, 138, 0.3)'}`,
+          boxShadow: 'none',
+          color: isDark ? '#ff0000' : '#1e3a8a',
+          fontSize: isDark ? '16px' : '14px'
         }}
         onClick={handleCanvasClick}
       >
-        {/* Grid background - Star Wars gold tint */}
+        {/* Grid background - Theme aware */}
         <div 
-          className="absolute inset-0 opacity-10"
+          className="absolute inset-0 opacity-5"
           style={{
             backgroundImage: `
-              linear-gradient(to right, #ffe81f 1px, transparent 1px),
-              linear-gradient(to bottom, #ffe81f 1px, transparent 1px)
+              linear-gradient(to right, ${isDark ? '#ff0000' : '#1e3a8a'} 1px, transparent 1px),
+              linear-gradient(to bottom, ${isDark ? '#ff0000' : '#1e3a8a'} 1px, transparent 1px)
             `,
             backgroundSize: '20px 20px'
           }}
@@ -122,25 +131,26 @@ const Board = ({ ideas, selectedIdeas, onIdeasChange, onSelectedIdeasChange }) =
           />
         ))}
 
-        {/* Empty state with Star Wars styling */}
+        {/* Empty state - Theme aware */}
         {ideas.length === 0 && (
-          <div className="absolute inset-0 flex items-center justify-center" style={{ color: '#ffe81f' }}>
+          <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center" style={{ 
               fontFamily: 'Rajdhani, sans-serif',
-              textShadow: '0 0 15px rgba(255, 232, 31, 0.6)'
+              textShadow: 'none',
+              color: isDark ? '#ff0000' : '#1e3a8a'
             }}>
               <div className="text-4xl mb-2">💡</div>
               <p className="text-lg font-medium mb-2" style={{ 
-                color: '#ffe81f',
+                color: isDark ? '#ff0000' : '#1e3a8a',
                 fontWeight: '700',
                 fontSize: '1.25rem'
               }}>Welcome to Brainstormzz!</p>
               <p className="text-sm" style={{ 
-                color: '#ffe81f',
+                color: isDark ? '#ff0000' : '#1e3a8a',
                 fontSize: '0.95rem'
               }}>Enter a topic above and click "Expand Ideas" to get started</p>
               <p className="text-xs mt-2" style={{ 
-                color: 'rgba(255, 232, 31, 0.8)',
+                color: isDark ? 'rgba(255, 0, 0, 0.7)' : 'rgba(30, 58, 138, 0.7)',
                 fontSize: '0.85rem'
               }}>Or click anywhere to add individual ideas</p>
             </div>

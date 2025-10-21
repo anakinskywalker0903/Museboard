@@ -1,65 +1,75 @@
 import React, { useState } from 'react';
+import { ThemeProvider, useTheme } from './context/ThemeContext';
+import { ThemeToggle } from './components/ThemeToggle';
 import Board from './components/Board';
 import Toolbar from './components/Toolbar';
 import './App.css';
 
-function App() {
+function AppContent() {
+  const { isDark } = useTheme();
   const [ideas, setIdeas] = useState([]);
   const [selectedIdeas, setSelectedIdeas] = useState([]);
 
+  const bgColor = isDark ? '#000000' : '#ffffff';
+  const textColor = isDark ? '#ffffff' : '#1e3a8a';
+  const headerBg = isDark ? '#000000' : '#ffffff';
+  const borderColor = isDark ? '#333333' : '#e5e7eb';
+
   return (
-    <div className="App min-h-screen bg-gray-50">
+    <div style={{ 
+      minHeight: '100vh',
+      backgroundColor: bgColor,
+      color: textColor,
+      transition: 'background-color 0.3s, color 0.3s'
+    }}>
       {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <div className="flex items-center">
-              <h1 className="text-2xl font-bold text-gray-900">
-                🎯 Brainstormzz
-              </h1>
-              <span className="ml-3 px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">
-                AI-Powered
-              </span>
-            </div>
-            <div className="text-sm text-gray-500">
-              Turn thoughts into structured ideas
-            </div>
-          </div>
-        </div>
-      </header>
+      <div style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: '24px',
+        borderBottomWidth: '1px',
+        borderBottomStyle: 'solid',
+        borderBottomColor: borderColor,
+        backgroundColor: headerBg
+      }}>
+        <h1 style={{ 
+          fontSize: '28px', 
+          fontWeight: 'bold',
+          color: isDark ? '#ffff00' : '#1e3a8a',
+          margin: 0
+        }}>
+          Brainstormzz
+        </h1>
+        <ThemeToggle />
+      </div>
 
       {/* Main Content */}
-      <main className="flex-1">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          {/* Toolbar */}
-          <Toolbar 
+      <div style={{ padding: '24px' }}>
+        <Toolbar 
+          ideas={ideas}
+          selectedIdeas={selectedIdeas}
+          onIdeasChange={setIdeas}
+          onSelectedIdeasChange={setSelectedIdeas}
+        />
+        <div style={{ marginTop: '24px' }}>
+          <Board 
             ideas={ideas}
             selectedIdeas={selectedIdeas}
             onIdeasChange={setIdeas}
             onSelectedIdeasChange={setSelectedIdeas}
           />
-          
-          {/* Board */}
-          <div className="mt-6">
-            <Board 
-              ideas={ideas}
-              selectedIdeas={selectedIdeas}
-              onIdeasChange={setIdeas}
-              onSelectedIdeasChange={setSelectedIdeas}
-            />
-          </div>
         </div>
-      </main>
-
-      {/* Footer */}
-      <footer className="bg-white border-t">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="text-center text-sm text-gray-500">
-            <p>Powered by Chrome's built-in AI • 100% Local • 100% Private</p>
-          </div>
-        </div>
-      </footer>
+      </div>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   );
 }
 
