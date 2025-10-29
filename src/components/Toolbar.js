@@ -266,4 +266,4 @@ const Toolbar = ({ ideas, selectedIdeas, onIdeasChange, onSelectedIdeasChange })
   );
 };
 
-export default Toolbar;
+export default Toolbar; 

@@ -18,8 +18,8 @@ Brainstormzz is an AI-powered brainstorming whiteboard that helps creators organ
 ## 🛠️ Tech Stack
 
 - **Frontend**: React 18 + Tailwind CSS
-- **Canvas**: HTML5 Canvas for whiteboard functionality
 - **AI**: Chrome Built-in APIs (Gemini Nano)
+- **Canvas**: HTML5 Canvas for whiteboard functionality
 - **Storage**: Local Storage for sessions
 - **Deployment**: Ready for GitHub Pages or Vercel
 
@@ -120,6 +120,14 @@ MIT License - see LICENSE file for details
 - ✅ Complete documentation
 - ✅ Chrome AI API integration
 - ✅ Local processing (privacy-focused)
+
+## 🎥 Demo & Submission Links
+
+- 🔗 **Live Demo:** [http://localhost:3000]
+- 📺 **Demo Video:** [YouTube Demo Link Here]
+- 💻 **Source Code:** [GitHub Repository URL]
+- 🧠 **Built-in AI Used:** Prompt API, Summarizer API, Rewriter API, Translator API (Gemini Nano)
+
 
 ---
 
