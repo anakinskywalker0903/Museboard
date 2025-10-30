@@ -125,7 +125,7 @@ MIT License - see LICENSE file for details
 
 - 🔗 **Live Demo:** [http://localhost:3000]
 - 📺 **Demo Video:** [https://youtu.be/BtxhjaGJBqY]
-- 💻 **Source Code:** [GitHub Repository URL]
+- 💻 **Source Code:** [https://github.com/anakinskywalker0903/Brainstormzz]
 - 🧠 **Built-in AI Used:** Prompt API, Summarizer API, Rewriter API, Translator API (Gemini Nano)
 
 
