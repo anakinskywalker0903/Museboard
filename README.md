@@ -124,7 +124,7 @@ MIT License - see LICENSE file for details
 ## 🎥 Demo & Submission Links
 
 - 🔗 **Live Demo:** [http://localhost:3000]
-- 📺 **Demo Video:** [YouTube Demo Link Here]
+- 📺 **Demo Video:** [https://youtu.be/BtxhjaGJBqY]
 - 💻 **Source Code:** [GitHub Repository URL]
 - 🧠 **Built-in AI Used:** Prompt API, Summarizer API, Rewriter API, Translator API (Gemini Nano)
 
